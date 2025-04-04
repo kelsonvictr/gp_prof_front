@@ -30,7 +30,7 @@ export const AuthProvider = ({ children }) => {
   // Função para fazer login e armazenar o token
   const login = async (username, senha) => {
     try {
-      const response = await fetch('https://gp-prof-front-mqoc.vercel.app/auth/login', {
+      const response = await fetch('https://gp-prof-api.onrender.com/auth/login', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ username, senha })

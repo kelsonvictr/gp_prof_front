@@ -21,7 +21,7 @@ const Register = () => {
     e.preventDefault()
     setErro(null)
     try {
-      const response = await fetch('https://gp-prof-front-mqoc.vercel.app/auth/register', {
+      const response = await fetch('https://gp-prof-api.onrender.com/auth/register', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(formData)
