@@ -1,9 +1,7 @@
-// O Context API permite compartilhar dados entre componentes sem precisar passar props manualmente
-// Isso evita o "prop drilling" — passar props de pai para filho até chegar onde precisa.
-
 import { createContext, useState, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { jwtDecode } from 'jwt-decode'
+import { API_BASE_URL } from '../api'
 
 // 1. Criamos o Context: uma "caixa global" para guardar e compartilhar informações (como o token e o usuário logado)
 export const AuthContext = createContext()
@@ -30,7 +28,7 @@ export const AuthProvider = ({ children }) => {
   // Função para fazer login e armazenar o token
   const login = async (username, senha) => {
     try {
-      const response = await fetch('https://gp-prof-api.onrender.com/auth/login', {
+      const response = await fetch(`${API_BASE_URL}/auth/login`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ username, senha })

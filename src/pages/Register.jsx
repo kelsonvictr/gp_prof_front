@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import { useNavigate, Link } from 'react-router-dom'
+import api from '../api' // usa o axios com baseURL + interceptor
 import './Login.css'
 
 const Register = () => {
@@ -20,19 +21,12 @@ const Register = () => {
   const handleSubmit = async (e) => {
     e.preventDefault()
     setErro(null)
+
     try {
-      const response = await fetch('https://gp-prof-api.onrender.com/auth/register', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(formData)
-      })
-
-      if (!response.ok) {
-        throw new Error('Erro ao registrar')
-      }
-
+      await api.post('/auth/register', formData)
       navigate('/login')
     } catch (error) {
+      console.error('Erro ao registrar:', error)
       setErro('Erro ao registrar usuário')
     }
   }
@@ -40,7 +34,7 @@ const Register = () => {
   return (
     <div className="login-container">
       <form onSubmit={handleSubmit} className="login-form">
-        <img src="./PRODUCT-manager-logo.png" />
+        <img src="./PRODUCT-manager-logo.png" alt="Logo" />
         <input
           type="text"
           placeholder="Usuário"
