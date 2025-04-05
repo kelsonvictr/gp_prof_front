@@ -1,7 +1,7 @@
 import { createContext, useState, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { jwtDecode } from 'jwt-decode'
-import { API_BASE_URL } from '../api'
+import api from '../api' // usa o axios com baseURL do .env e interceptor automático
 
 // 1. Criamos o Context: uma "caixa global" para guardar e compartilhar informações (como o token e o usuário logado)
 export const AuthContext = createContext()
@@ -28,15 +28,8 @@ export const AuthProvider = ({ children }) => {
   // Função para fazer login e armazenar o token
   const login = async (username, senha) => {
     try {
-      const response = await fetch(`${API_BASE_URL}/auth/login`, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ username, senha })
-      })
-
-      if (!response.ok) throw new Error('Usuário ou senha inválidos')
-
-      const data = await response.json()
+      const response = await api.post('/auth/login', { username, senha }) // ✅ usando api com baseURL e interceptor
+      const data = response.data
       const novoToken = data.token
 
       localStorage.setItem('token', novoToken) // Salva o token no navegador
