@@ -44,4 +44,21 @@
     margin-bottom: 10px;
     text-align: center;
   }
+
+  .login-form p {
+    margin-top: 10px;
+    text-align: center;
+    font-size: 14px;
+  }
+  
+  .login-form a {
+    color: #fd7e14;
+    text-decoration: none;
+    font-weight: bold;
+  }
+  
+  .login-form a:hover {
+    text-decoration: underline;
+  }
+  
   
