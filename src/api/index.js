@@ -1,10 +1,7 @@
 import axios from 'axios'
 
-// 👉 Base URL da API centralizada
-export const API_BASE_URL = 'https://gp-prof-api.onrender.com'
-
-// 👉 Exemplo com API local (ideal para desenvolvimento local):
-// export const API_BASE_URL = 'http://localhost:8080'
+// Lê a URL da API do arquivo .env
+const baseURL = import.meta.env.VITE_API_URL
 
 /**
  * “Interceptor é como um ‘porteiro’ que intercepta todas as requisições que o front envia para o backend. Se você tiver um token, ele automaticamente coloca esse token no cabeçalho da requisição. Isso evita que a gente tenha que escrever esse código manualmente toda vez.”
