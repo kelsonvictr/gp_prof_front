@@ -16,7 +16,7 @@ const baseURL = import.meta.env.VITE_API_URL
  * Isso é essencial para acessar rotas protegidas no backend com segurança.
  */
 const instance = axios.create({
-  baseURL: API_BASE_URL
+  baseURL: baseURL 
 })
 
 instance.interceptors.request.use(
